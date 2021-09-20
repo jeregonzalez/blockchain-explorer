@@ -1,0 +1,11 @@
+.dockerignore
+Dockerfile
+docker-compose.yaml
+venv/
+.git
+.gitignore
+.idea
+*.py[cod]
+*$py.class
+.pipcache/
+__pycache__/
