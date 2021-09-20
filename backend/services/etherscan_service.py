@@ -59,7 +59,7 @@ class EtherscanService:
         # Workaround to avoid limit of api calls per second
         result = []
         for i in range(last, first, -1):
-            time.sleep(0.2)
+            time.sleep(0.25)
             result.append(await self.get_block(i))
         return result
 
