@@ -38,10 +38,10 @@ class EtherscanService:
         r.raise_for_status()
         return r.json()['result']
 
-    async def get_blocks(self, limit: int = 10, offset: int = 0) -> List[dict]:
+    async def get_blocks(self, page: int = 1, offset: int = 10) -> List[dict]:
         last_block_number = await self.get_last_block_number(return_hex=False)
-        first = last_block_number - offset - limit
-        last = first + limit
+        first = last_block_number - (page * offset)
+        last = first + offset
         # result = await asyncio.gather(
         #     *[self.get_block_info(i) for i in range(first, last)]
         # )

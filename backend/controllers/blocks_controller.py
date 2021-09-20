@@ -1,9 +1,12 @@
+from typing import List
+
 from dependency_injector.wiring import inject, Provide
 from fastapi import APIRouter, Depends
 from starlette import status
 
 from backend.controllers.dependencies import pagination_params
 from backend.core.containers import Container
+from backend.schemas.blocks import Block, BlockInformation
 from backend.services.etherscan_service import EtherscanService
 
 router = APIRouter()
@@ -12,7 +15,8 @@ router = APIRouter()
 @router.get(
     '',
     name='get last blocks',
-    status_code=status.HTTP_200_OK
+    status_code=status.HTTP_200_OK,
+    response_model=List[Block]
 )
 @inject
 async def get_last_blocks(
@@ -25,7 +29,8 @@ async def get_last_blocks(
 @router.get(
     '/{block_number}',
     name='get block info by block_number',
-    status_code=status.HTTP_200_OK
+    status_code=status.HTTP_200_OK,
+    response_model=BlockInformation
 )
 @inject
 async def get_block(

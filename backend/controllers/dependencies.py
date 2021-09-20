@@ -1,5 +1,8 @@
-async def pagination_params(limit: int = 10, offset: int = 0):
+async def pagination_params(page: int = 1, offset: int = 10):
+    """
+    Pagination params using page and offset
+    """
     return {
-        'limit': limit,
+        'page': page,
         'offset': offset
     }
