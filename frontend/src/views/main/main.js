@@ -1,4 +1,4 @@
-import { Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@material-ui/core"
+import { Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import { getLastBlocks } from "../../services/ethereum-explorer-api"
 
@@ -7,13 +7,17 @@ const MainView = () => {
   const [blocks, setBlocks] = useState([])
 
   useEffect(() => {
-    getLastBlocks().then((response) => {
+    getLastBlocks(1, 2).then((response) => {
       setBlocks(response.data)
     })
+
+    return () => {
+      setBlocks([])
+    }
   }, [])
 
   return (
-    <Container maxWidth="md">
+      <>
       <Typography variant="h4" gutterBottom>Latest blocks</Typography>
 
       <TableContainer component={Paper}>
@@ -31,7 +35,9 @@ const MainView = () => {
           <TableBody>
             {blocks.map((block, index) => (
               <TableRow key={index}>
-                <TableCell component="th" scope="row" align="center">{block.blockNumber}</TableCell>
+                <TableCell component="th" scope="row" align="center">
+                  <Link href={`/blocks/${block.blockNumber}`}>{block.blockNumber}</Link>
+                </TableCell>
                 <TableCell align="center">{block.timeStamp}</TableCell>
                 <TableCell align="center">{block.blockMiner}</TableCell>
                 <TableCell align="center">{block.blockReward}</TableCell>
@@ -42,8 +48,7 @@ const MainView = () => {
         </Table>
 
       </TableContainer>
-
-    </Container>
+    </>
   )
 
 }
