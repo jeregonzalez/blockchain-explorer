@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from backend import controllers
 from backend.core.config import APP_NAME, APP_VERSION, DEBUG
@@ -16,6 +17,15 @@ def create_app() -> FastAPI:
     }
 
     fast_app = FastAPI(**config)
+
+    # Allow CORS
+    fast_app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     # Initialize DI container
     container = Container()
