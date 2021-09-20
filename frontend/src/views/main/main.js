@@ -7,7 +7,7 @@ const MainView = () => {
   const [blocks, setBlocks] = useState([])
 
   useEffect(() => {
-    getLastBlocks(1, 2).then((response) => {
+    getLastBlocks(1, 10).then((response) => {
       setBlocks(response.data)
     })
 

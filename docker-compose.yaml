@@ -9,8 +9,6 @@ services:
     ports:
       - "8000:8000"
     entrypoint: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-    volumes:
-      - ./backend:/app/backend
     environment:
       - DEBUG=True
       - ETHERSCAN_API_KEY=IJ9W4XUNK1WE7VPPK3G1CES4AD8IRE6BKU
@@ -22,7 +20,5 @@ services:
     ports:
       - "3000:3000"
     entrypoint: npm start
-    volumes:
-      - ./frontend:/app
     environment:
       - REACT_APP_BACKEND_URL=http://localhost:8000/api/v1
