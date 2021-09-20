@@ -1,3 +1,4 @@
+import time
 from typing import List, Union
 
 import httpx
@@ -53,7 +54,13 @@ class EtherscanService:
         # result = await asyncio.gather(
         #     *[self.get_block_info(i) for i in range(first, last)]
         # )
-        result = [await self.get_block(i) for i in range(first, last)]
+        # result = [await self.get_block(i) for i in range(first, last)]
+
+        # Workaround to avoid limit of api calls per second
+        result = []
+        for i in range(last, first, -1):
+            time.sleep(0.2)
+            result.append(await self.get_block(i))
         return result
 
     async def get_block_info(self, block_tag: str) -> dict:
