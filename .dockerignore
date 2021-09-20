@@ -1,11 +1,14 @@
 .dockerignore
-Dockerfile
+Dockerfile.backend
+Dockerfile.frontend
 docker-compose.yaml
 venv/
 .git
-.gitignore
+**/.gitignore
 .idea
 *.py[cod]
 *$py.class
 .pipcache/
 __pycache__/
+**/node_modules
+**/build
