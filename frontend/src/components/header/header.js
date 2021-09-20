@@ -12,7 +12,7 @@ const Header = () => {
     <AppBar position="sticky" className={classes.appBar}>
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          Ripio Portal
+          Ethereum Explorer
         </Typography>
       </Toolbar>
     </AppBar>

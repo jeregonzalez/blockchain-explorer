@@ -7,7 +7,7 @@ ROOT_DIR = os.getcwd()
 _config = Config(os.path.join(ROOT_DIR, '.env'))
 
 APP_VERSION = '0.0.1'
-APP_NAME = 'ripio-portal-api'
+APP_NAME = 'ethereum-explorer-api'
 API_PREFIX = '/api/v1'
 
 DEBUG: bool = _config('DEBUG', cast=bool, default=False)
